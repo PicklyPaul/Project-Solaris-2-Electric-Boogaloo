@@ -5,10 +5,9 @@ import pandas as pd
 import os
 import h5py
 import sys
-#put into earthaccess info here if you wish to stop repeating login
-#os.environ['EARTHDATA_USERNAME'] = ''
-#os.environ['EARTHDATA_PASSWORD'] = ''
 
+os.environ['EARTHDATA_USERNAME'] = 'picklypaul'
+os.environ['EARTHDATA_PASSWORD'] = 'Billyb0b!oee'
 ea.login()
 #"GLDAS_NOAH10_M"
 print("begin")
@@ -18,18 +17,20 @@ print("begin")
 def downloader(sn, v, m):
     i = 2001
     for i in range(2001,2025):
-        #print("looping through"+str(i))
-        results = ea.search_data(
-            short_name = sn ,
-            version = v,
-            temporal = (
-                    dt.datetime(i,int(m),2),
-                    dt.datetime(i,int(m),3)
-                    ),
-        )
-        #print("starting download for"+str(i))
-        ea.download(results, local_path="data")
-        i+=1
+        file_path = "data/GLDAS_NOAH10_M.A"+str(i)+str(m)+".021.nc4"
+        if os.path.isfile(file_path):
+            i+=1
+        else:
+            results = ea.search_data(
+                short_name = sn ,
+                version = v,
+                temporal = (
+                        dt.datetime(i,int(m),2),
+                        dt.datetime(i,int(m),3)
+                        ),
+            )
+            ea.download(results, local_path="data")
+            i+=1
 
 #'Tair_f_inst'
 #mote these are for x.5 and y.5
@@ -73,7 +74,6 @@ def trender(list, years):
     return z
       
 def compute(m,y,x,p):
-    print(m)
     yz = round(y+0.5)
     xz = round(x+0.5)
     az = []
