@@ -6,17 +6,18 @@ import os
 import h5py
 import sys
 
+#login to earthdata 
 #os.environ['EARTHDATA_USERNAME'] = ''
 #os.environ['EARTHDATA_PASSWORD'] = ''
 ea.login()
 #"GLDAS_NOAH10_M"
-print("begin")
+
 #downloads the files from 2001 to 2025
-#will be changed, just to speed up development
 #sn = short name, v = version, m = month of analysis
 def downloader(sn, v, m):
     i = 2001
     for i in range(2001,2025):
+        #should be changed to be not be as hardcoded
         file_path = "data/GLDAS_NOAH10_M.A"+str(i)+str(m)+".021.nc4"
         if os.path.isfile(file_path):
             i+=1
@@ -32,8 +33,7 @@ def downloader(sn, v, m):
             ea.download(results, local_path="data")
             i+=1
 
-#'Tair_f_inst'
-#mote these are for x.5 and y.5
+#extracts datasets from downloaded data and organizes them under variables
 def lister(var, y, x,m):
     i = 2001
     lists = []
@@ -51,7 +51,7 @@ def lister(var, y, x,m):
         i+=1
     return lists
 
-#average of the list
+#extrapolate the trend observed through past data
 def trender(list, years):
     #chl = the list of the change between years, rl = rate of change betwween the change(chl)
     chl = []
@@ -72,8 +72,10 @@ def trender(list, years):
         inc = avgc*(avgr*k)
         z+= inc
     return z
-      
+
+#main function
 def compute(m,y,x,p):
+    #move coords as data comes from the corners
     yz = round(y+0.5)
     xz = round(x+0.5)
     az = []
@@ -84,4 +86,3 @@ def compute(m,y,x,p):
         zz = trender(lister(i,yz,xz,m),p)# - 273.15
         az.append(zz)
     return az
-print("sent")
