@@ -1,0 +1,5 @@
+earthaccess==0.18.0
+h5py==3.16.0
+pandas==3.0.3
+Requests==2.34.2
+webview==0.1.5
