@@ -6,8 +6,8 @@ import os
 import h5py
 import sys
 
-os.environ['EARTHDATA_USERNAME'] = 'picklypaul'
-os.environ['EARTHDATA_PASSWORD'] = 'Billyb0b!oee'
+#os.environ['EARTHDATA_USERNAME'] = ''
+#os.environ['EARTHDATA_PASSWORD'] = ''
 ea.login()
 #"GLDAS_NOAH10_M"
 print("begin")
