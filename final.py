@@ -5,9 +5,10 @@ import pandas as pd
 import os
 import h5py
 import sys
+#put into earthaccess info here if you wish to stop repeating login
+#os.environ['EARTHDATA_USERNAME'] = ''
+#os.environ['EARTHDATA_PASSWORD'] = ''
 
-os.environ['EARTHDATA_USERNAME'] = 'picklypaul'
-os.environ['EARTHDATA_PASSWORD'] = 'Billyb0b!oee'
 ea.login()
 #"GLDAS_NOAH10_M"
 print("begin")
