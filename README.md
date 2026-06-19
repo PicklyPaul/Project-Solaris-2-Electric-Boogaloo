@@ -4,3 +4,7 @@
 Extra Information on Earthaccces:
 
   Earthaccess is nasa's library to extract information from their opendas repository. We use it to download the GLDAS dataset. For the moment, the data will need to be downloaded, and so an earthaccess login is required every time the app is run, or can be hard coded in the compute file. In the future, we will still require earthacces login, but that will be provided with another file, so no extra steps will need to be done on the user end.
+
+Credits:
+SparshWasHere-1 for app.py
+PicklyPaul for final.py
